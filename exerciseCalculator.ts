@@ -64,7 +64,7 @@ interface providedArguments {
 
 const parseargs = (args: Array<string>): providedArguments => {
   if (args.length < 4) throw new Error('Not enough arguments');
-  const [path, file, ...rest] = args
+  const [_path, _file, ...rest] = args
   const result = rest.every( (e) => !isNaN(Number(e)));
   if (result) {
     return {

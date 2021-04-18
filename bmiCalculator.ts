@@ -1,5 +1,5 @@
 
-const calculateBmi = (height: number, weight: number):string => {
+const calculateBmi = (height: number, weight: number): string => {
 
   const bmi = weight/(Math.pow(height/100, 2));
 
@@ -21,8 +21,8 @@ const calculateBmi = (height: number, weight: number):string => {
     case (bmi > 40):
       return 'Obese Class III (Very severely obese)'
 
-
   }
+  return ''
 
 }
 interface Arguments {
@@ -50,6 +50,7 @@ try {
 } catch (e) {
   console.log('Error, something bad happened, message: ', e.message);
 }
+export default calculateBmi
 
 // console.log(calculateBmi(180, 74))
 // masa en kg / altura m2 --- 74/(1,80*1,80)
