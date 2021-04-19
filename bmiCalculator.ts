@@ -5,26 +5,26 @@ const calculateBmi = (height: number, weight: number): string => {
 
   switch (true) {
     case (bmi < 15):
-      return 'Very severely underweight'
+      return 'Very severely underweight';
     case (bmi < 16):
-      return 'Severely underweight'
+      return 'Severely underweight';
     case (bmi < 18.5):
-      return 'Underweight'
+      return 'Underweight';
     case (bmi < 25):
-      return 'Normal (healthy weight)'
+      return 'Normal (healthy weight)';
     case (bmi < 30):
-      return 'Overweight'
+      return 'Overweight';
     case (bmi < 35):
-      return 'Obese Class I (Moderately obese)'
+      return 'Obese Class I (Moderately obese)';
     case (bmi < 40):
-      return 'Obese Class II (Severely obese)'
+      return 'Obese Class II (Severely obese)';
     case (bmi > 40):
-      return 'Obese Class III (Very severely obese)'
+      return 'Obese Class III (Very severely obese)';
 
   }
-  return ''
+  return '';
 
-}
+};
 interface Arguments {
   value1: number;
   value2: number;
@@ -38,19 +38,19 @@ const parseArguments = (args: Array<string>): Arguments => {
     return {
       value1: Number(args[2]),
       value2: Number(args[3])
-    }
+    };
   } else {
     throw new Error('Provided values were not numbers!');
   }
-}
+};
 
 try {
   const { value1, value2 } = parseArguments(process.argv);
   console.log(calculateBmi(value1, value2));
 } catch (e) {
-  console.log('Error, something bad happened, message: ', e.message);
+  console.log('Error, something bad happened, message: ', e);
 }
-export default calculateBmi
+export default calculateBmi;
 
 // console.log(calculateBmi(180, 74))
 // masa en kg / altura m2 --- 74/(1,80*1,80)
