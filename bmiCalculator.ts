@@ -48,7 +48,8 @@ try {
   const { value1, value2 } = parseArguments(process.argv);
   console.log(calculateBmi(value1, value2));
 } catch (e) {
-  console.log('Error, something bad happened, message: ', e);
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  console.log('Error, something bad happened, message: ', e.message);
 }
 export default calculateBmi;
 

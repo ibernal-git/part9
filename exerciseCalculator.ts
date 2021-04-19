@@ -82,8 +82,7 @@ try {
   const { workoutHours, targetHours } = parseargs(process.argv);
   console.log(calculateExercises(workoutHours, targetHours));
 } catch (e) {
-  console.log('Error, something bad happened, message: ', e);
+  console.log('Error, something bad happened, message: ', e.message);
 }
 
-
-//console.log(calculateExercises([3, 0, 2, 4.5, 0, 3, 1], 2))
+export default calculateExercises
