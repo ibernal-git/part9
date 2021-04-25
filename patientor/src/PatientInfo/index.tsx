@@ -6,7 +6,7 @@ import { Header, List, Icon } from "semantic-ui-react";
 
 import { Patient } from '../types';
 
-import { useStateValue } from "../state";
+import { useStateValue, getPatient } from "../state";
 
 const PatientInfo = () => {
 
@@ -15,23 +15,23 @@ const PatientInfo = () => {
 
   useEffect(() => {
 
-    const getPatient = async () => {
+    const getPatientInfo = async () => {
 
       if (!patients[id] || !patients[id].ssn) {
         try {
-          const patient = await axios.get<Patient>(`${apiBaseUrl}/patients/${id}`);
+          const { data: patient } = await axios.get<Patient>(`${apiBaseUrl}/patients/${id}`);
           console.log(patient);
           if (!patient) {
             return (<div>no patient found</div>);
           }
-          dispatch({ type: "GET_PATIENT", payload: patient.data });
+          dispatch(getPatient(patient));
         } catch (e) {
           const error = e as Error;
           return (<div>{`error: ${error.message}`}</div>);
         }
       }
     };
-    void getPatient();
+    void getPatientInfo();
   }, [dispatch]);
 
   if (!patients[id]) {
