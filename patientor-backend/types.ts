@@ -27,7 +27,7 @@ export interface Patient {
         },
       },
  */
-interface BaseEntry {
+export interface BaseEntry {
   id: string;
   date: string;
   specialist: string;

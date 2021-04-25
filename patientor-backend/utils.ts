@@ -9,7 +9,7 @@
   });
   res.json(newDiaryEntry);
  */
-  import { NewPatient, Patient, Gender } from './types';
+  import { NewPatient, Patient, Gender, BaseEntry, Entry } from './types';
   import { v4 as uuidv4 } from 'uuid';
 
   const toNewPatient = (object: NewPatient): Patient => {
@@ -63,3 +63,44 @@
   };
   
   export default toNewPatient;
+
+  export const toNewEntry = (object: Entry): Entry | Error => {
+
+    const newEntry: BaseEntry = {
+      id: uuidv4(),
+      date: parseDate(object.date),
+      specialist: parseInput(object.specialist),
+      description: parseInput(object.description),
+      diagnosisCodes: object.diagnosisCodes ? object.diagnosisCodes : []
+    };
+    
+    if(object.type === undefined) {
+      throw new Error('Invalid entry type');
+    }
+    console.log(object);
+
+    switch (object.type) {
+      case 'HealthCheck':
+          if (object.healthCheckRating === undefined) {
+            throw new Error('Invalid healthCheckRating');
+          }
+          return { ...newEntry, type: 'HealthCheck', healthCheckRating: object.healthCheckRating };
+      case 'Hospital':
+          if (object.discharge  === undefined) {
+            throw new Error('Invalid discharge');
+          }
+          return { ...newEntry, type: 'Hospital', discharge: object.discharge };
+      case 'OccupationalHealthcare':
+          if (object.employerName  === undefined) {
+            throw new Error('Invalid employerName');
+          }
+          return {
+              ...newEntry, type: 'OccupationalHealthcare',
+              employerName: object.employerName,
+              sickLeave: object.sickLeave ? object.sickLeave : undefined
+          };
+      default:
+          throw new Error("Invalid input data");
+    }
+
+};

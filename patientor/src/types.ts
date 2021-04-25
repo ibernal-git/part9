@@ -39,7 +39,7 @@ export enum HealthCheckRating {
     "CriticalRisk" = 3
 }
 
-interface HealthCheckEntry extends BaseEntry {
+export interface HealthCheckEntry extends BaseEntry {
     type: "HealthCheck";
     healthCheckRating: number;
 }
@@ -70,9 +70,29 @@ export type Entry =
     | OccupationalHealthcareEntry
     | HealthCheckEntry;
 
+export interface EntryForm extends BaseEntry {
+  type: string;
+  healthCheckRating?: HealthCheckRating;
+  dischargeDate?: string;
+  dischargeCriteria?: string;
+  employerName?: string;
+  sickLeaveStartDate?: string;
+  sickLeaveEndDate?: string;
+}
+
 export interface EntriesProps {
   entries: Entry[];
 }
 export interface EntryDetailsProps {
   entry: Entry
+}
+export interface AddEntryProps {
+  onSubmit: (values: EntryForm) => void;
+  onCancel: () => void;
+}
+
+export enum EntryType {
+  "HealthCheck" = 'HealthCheck',
+  "Hospital" = "Hospital",
+  "OccupationalHealthcare" = "OccupationalHealthcare"
 }
