@@ -7,6 +7,7 @@ import { Header, List, Icon } from "semantic-ui-react";
 import { Patient } from '../types';
 
 import { useStateValue, getPatient } from "../state";
+import Entries from './Entries';
 
 const PatientInfo = () => {
 
@@ -57,6 +58,7 @@ const PatientInfo = () => {
         <List.Item>occupation: {patients[id].occupation}</List.Item>
         <List.Item>gender: {patients[id].gender}</List.Item>
       </List>
+      <Entries entries={patients[id].entries} />
     </div>
   );
 };

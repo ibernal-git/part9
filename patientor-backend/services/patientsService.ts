@@ -1,7 +1,5 @@
-import patientsData from '../data/patients.json';
+import patients from '../data/patients';
 import { NonSensitivePatient, Patient } from '../types';
-
-const patients: Patient[] = patientsData as Patient[];
 
 const getNonSensitivePatients = (): NonSensitivePatient [] => {
   return patients.map(({ id, name, dateOfBirth, gender, occupation, entries }) => ({
