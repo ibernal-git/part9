@@ -6,11 +6,18 @@ export interface DiagnoseEntry {
 export interface Patient {
   id: string;
   name: string;
-  dateOfBirth: string;
   ssn: string;
-  gender: string;
-  occupation: string
+  occupation: string;
+  gender: Gender;
+  dateOfBirth: string;
+  entries: Entry[]
 }
+export interface Entry {
+  entry?: string;
+}
+
+export type PublicPatient = Omit<Patient, 'ssn' | 'entries' >;
+
 export type NonSensitivePatient = Omit<Patient, 'ssn'>;
 
 export type NewPatient = Omit<Patient, 'id'>;

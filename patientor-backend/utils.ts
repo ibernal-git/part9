@@ -19,7 +19,8 @@
       name: parseInput(object.name),
       occupation: parseInput(object.occupation),
       dateOfBirth: parseDate(object.dateOfBirth),
-      ssn: parseInput(object.ssn)
+      ssn: parseInput(object.ssn),
+      entries: []
   };
   
     return newPatient;
@@ -28,10 +29,10 @@
     return typeof text === 'string' || text instanceof String;
   };
 
-  const parseInput = (input: unknown): string => {
+  export const parseInput = (input: unknown): string => {
     if (!input || !isString(input)) {
       // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-      throw new Error(`Incorrect or missing gender: ${input}`,);
+      throw new Error(`Incorrect or missing input: ${input}`,);
     }
     return input;
   };
